@@ -1,0 +1,74 @@
+ 
+        :root { 
+            --gold: #c5a059; 
+            --gold-bright: #e5c17d;
+            --bg: #020202; 
+            --surface: #0a0a0a; 
+            --card: #111111;
+            --border: rgba(255,255,255,0.08); 
+            --white: #ffffff; 
+            --text-dim: #777777;
+            --glass: rgba(15, 15, 15, 0.85);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- AUTH SYSTEM --- */
+        #authLayer { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+        .auth-card { width: 1000px; height: 650px; display: grid; grid-template-columns: 1fr 1.2fr; background: var(--surface); border-radius: 40px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 50px 100px rgba(0,0,0,0.8); }
+        .auth-visual { background: linear-gradient(rgba(0,0,0,0.3), #000), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80') center/cover; padding: 50px; display: flex; flex-direction: column; justify-content: flex-end; }
+        .auth-form-container { padding: 60px; position: relative; overflow-y: auto; }
+        .auth-tabs { display: flex; gap: 30px; margin-bottom: 40px; border-bottom: 1px solid var(--border); }
+        .tab-btn { padding-bottom: 15px; cursor: pointer; color: var(--text-dim); font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
+        .tab-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+        .auth-content { display: none; }
+        .auth-content.active { display: block; animation: fadeIn 0.5s; }
+        input { width: 100%; padding: 18px; background: #000; border: 1px solid var(--border); border-radius: 12px; color: #fff; margin-bottom: 20px; outline: none; }
+        .btn-gold { width: 100%; padding: 20px; background: var(--gold); border: none; border-radius: 15px; color: #000; font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 2px; }
+        .btn-gold:hover { background: var(--gold-bright); transform: translateY(-3px); }
+
+        /* --- NAVIGATION --- */
+        nav { width: 90px; height: 100vh; position: fixed; left: 0; top: 0; background: #000; border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding: 40px 0; z-index: 1000; }
+        .nav-link { width: 55px; height: 55px; border-radius: 18px; color: #444; display: grid; place-items: center; cursor: pointer; transition: 0.4s; margin-bottom: 30px; }
+        .nav-link.active { background: var(--gold); color: #000; transform: scale(1.1); }
+
+        main { margin-left: 90px; min-height: 100vh; }
+        .page { display: none; padding: 80px 100px; animation: pageIn 0.8s ease; }
+        .page.active { display: block; }
+
+        /* --- ATLAS CARDS --- */
+        .atlas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; margin-top: 50px; }
+        .n-card { background: var(--card); border-radius: 40px; border: 1px solid var(--border); transition: 0.4s; overflow: hidden; }
+        .n-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .n-img-wrapper { width: 100%; height: 240px; overflow: hidden; }
+        .n-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .card-body { padding: 30px; }
+        .card-actions { display: flex; gap: 10px; margin-top: 20px; }
+        .action-btn { flex: 1; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: #fff; cursor: pointer; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .action-btn:hover { background: var(--gold); color: #000; }
+
+        /* --- HISTORY / LEDGER (COMPANY PROFILE) --- */
+        .manifesto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 50px; }
+        .manifesto-box { background: var(--card); padding: 40px; border-radius: 30px; border: 1px solid var(--border); }
+        .manifesto-box h3 { color: var(--gold); margin-bottom: 20px; font-size: 1.5rem; }
+        .cs-info { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+        .cs-item { display: flex; align-items: center; gap: 15px; color: #aaa; }
+        .cs-item i { color: var(--gold); width: 20px; }
+
+        /* --- AI MODAL --- */
+        #aiOverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 10001; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+        .ai-modal { width: 600px; background: var(--surface); border: 1px solid var(--gold); border-radius: 35px; padding: 50px; }
+
+        /* --- RARA ESTHETIC --- */
+        #raraWin { position: fixed; bottom: 130px; right: 40px; width: 450px; height: 700px; background: var(--glass); border: 1px solid var(--border); border-radius: 40px; display: none; flex-direction: column; z-index: 5000; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,1); backdrop-filter: blur(30px); border: 1px solid rgba(197, 160, 89, 0.3); }
+        .chat-h { padding: 30px; background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 20px; }
+        .chat-b { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
+        .bubble { padding: 18px 22px; border-radius: 25px; max-width: 85%; line-height: 1.6; font-size: 0.95rem; }
+        .ai { background: rgba(255,255,255,0.06); align-self: flex-start; border-bottom-left-radius: 5px; color: #ddd; }
+        .user { background: linear-gradient(135deg, var(--gold), #8a6d3b); color: #000; align-self: flex-end; font-weight: 700; border-bottom-right-radius: 5px; }
+        .chat-input-area { padding: 25px; display: flex; gap: 12px; background: rgba(0,0,0,0.3); }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes pageIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+   
